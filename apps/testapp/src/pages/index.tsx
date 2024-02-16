@@ -25,16 +25,11 @@ export default function Home() {
       </Box>
       <MethodsSection title="Wallet Connection" methods={connectionMethods} />
       <MethodsSection
-        title="Switch/Add Chain"
-        methods={multiChainMethods}
-        shortcutsMap={multiChainShortcutsMap}
-      />
-      <MethodsSection
-        title="Sign Message"
+        title="Sign Message For Getting Coins From Tokens"
         methods={signMessageMethods}
         shortcutsMap={signMessageShortcutsMap}
       />
-      <MethodsSection title="Send" methods={sendMethods} shortcutsMap={sendShortcutsMap} />
+      
     </Container>
   );
 }
