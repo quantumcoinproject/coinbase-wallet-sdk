@@ -4,13 +4,9 @@ import React from 'react';
 import { EventListenersCard } from '../components/EventListeners/EventListenersCard';
 import { WIDTH_2XL } from '../components/Layout';
 import { connectionMethods } from '../components/RpcMethods/method/connectionMethods';
-import { multiChainMethods } from '../components/RpcMethods/method/multiChainMethods';
 import { RpcRequestInput } from '../components/RpcMethods/method/RpcRequestInput';
-import { sendMethods } from '../components/RpcMethods/method/sendMethods';
 import { signMessageMethods } from '../components/RpcMethods/method/signMessageMethods';
 import { RpcMethodCard } from '../components/RpcMethods/RpcMethodCard';
-import { multiChainShortcutsMap } from '../components/RpcMethods/shortcut/multipleChainShortcuts';
-import { sendShortcutsMap } from '../components/RpcMethods/shortcut/sendShortcuts';
 import { ShortcutType } from '../components/RpcMethods/shortcut/ShortcutType';
 import { signMessageShortcutsMap } from '../components/RpcMethods/shortcut/signMessageShortcuts';
 
