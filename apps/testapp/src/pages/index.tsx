@@ -3,7 +3,6 @@ import React from 'react';
 
 import { EventListenersCard } from '../components/EventListeners/EventListenersCard';
 import { WIDTH_2XL } from '../components/Layout';
-import { connectionMethods } from '../components/RpcMethods/method/connectionMethods';
 import { RpcRequestInput } from '../components/RpcMethods/method/RpcRequestInput';
 import { signMessageMethods } from '../components/RpcMethods/method/signMessageMethods';
 import { RpcMethodCard } from '../components/RpcMethods/RpcMethodCard';
