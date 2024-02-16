@@ -24,8 +24,7 @@ export default function Home() {
         title="Sign Message For Getting Coins From Tokens"
         methods={signMessageMethods}
         shortcutsMap={signMessageShortcutsMap}
-      />
-      
+      />      
     </Container>
   );
 }
