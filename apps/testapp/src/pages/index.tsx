@@ -19,7 +19,6 @@ export default function Home() {
           <EventListenersCard />
         </Grid>
       </Box>
-      <MethodsSection title="Wallet Connection" methods={connectionMethods} />
       <MethodsSection
         title="Sign Message For Getting Coins From Tokens"
         methods={signMessageMethods}
