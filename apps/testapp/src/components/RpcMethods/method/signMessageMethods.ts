@@ -34,39 +34,8 @@ const personalSign: RpcRequestInput = {
   ],
 };
 
-const ethSignTypedDataV1: RpcRequestInput = {
-  method: 'eth_signTypedData_v1',
-  params: [
-    { key: 'message', required: true },
-    { key: 'address', required: true },
-  ],
-  format: (data: Record<string, string>) => [parseMessage(data.message), data.address],
-};
-
-const ethSignTypedDataV3: RpcRequestInput = {
-  method: 'eth_signTypedData_v3',
-  params: [
-    { key: 'message', required: true },
-    { key: 'address', required: true },
-  ],
-  format: (data: Record<string, string>) => [data.address, parseMessage(data.message)],
-};
-
-const ethSignTypedDataV4: RpcRequestInput = {
-  method: 'eth_signTypedData_v4',
-  params: [
-    { key: 'message', required: true },
-    { key: 'address', required: true },
-  ],
-  format: (data: Record<string, string>) => [data.address, parseMessage(data.message)],
-};
-
 export const signMessageMethods = [
-  ethSign,
   personalSign,
-  ethSignTypedDataV1,
-  ethSignTypedDataV3,
-  ethSignTypedDataV4,
 ];
 
 export const verifySignMsg = ({
