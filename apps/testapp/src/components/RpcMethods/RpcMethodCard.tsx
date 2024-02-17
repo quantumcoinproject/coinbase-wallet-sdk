@@ -32,6 +32,7 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
   const [error, setError] = React.useState<Record<string, unknown> | string | number | null>(null);
   const { provider } = useCBWSDK();
   const [sdk, setSDK] = React.useState<MetaMaskSDK>();
+  const [walletType, setWalletType] = React.useState(null);
 
   const {
     handleSubmit,
@@ -41,6 +42,7 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
 
 const connectAndSignMetaMask = async (message: string) => {
     try {
+        console.log(message);
         const signResult = await sdk?.connectAndSign({
             msg: message
         });
@@ -89,17 +91,16 @@ const connectAndSignCoinbase = async (data: Record<string, string>) => {
 
   const submit = useCallback(
     async (data: Record<string, string>) => {
-        if (data["walletType"] === 'coinbase') {
+        if (walletType === 'coinbase') {
             connectAndSignCoinbase(data);
             return;
-        } else if (data["walletType"] === 'metamask') {
+        } else if (walletType === 'metamask') {
             connectAndSignMetaMask(data["message"]);
             return;
         } else {
             setError('Select a wallet type');
             return;
         }
-
 
      /* setError(null);
       setResponse(null);
@@ -155,7 +156,7 @@ const connectAndSignCoinbase = async (data: Record<string, string>) => {
                 <AccordionPanel pb={4}>
                     <VStack spacing={2} mt={2}>
                         <FormControl key="walletType" isRequired={true}>
-                            <RadioGroup name="walletType">
+                            <RadioGroup name="walletType" onChange={setWalletType}>
                                 <Stack direction='row'>
                                     <Radio value='coinbase'>Coinbase Wallet</Radio>
                                     <Radio value='metamask'>MetaMask</Radio>
