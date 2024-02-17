@@ -74,7 +74,7 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
   );
 
   return (
-    <Box minWidth="500px">
+    <Box minWidth="500px" as="form" onSubmit={handleSubmit(submit)} >
         {params?.length > 0 && (
           <>
             <Accordion allowMultiple mt={4} defaultIndex={shortcuts ? [1] : [0]}  index={[0]}>
