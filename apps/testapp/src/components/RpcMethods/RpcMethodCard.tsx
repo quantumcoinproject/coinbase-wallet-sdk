@@ -75,7 +75,7 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
   );
 
   return (
-    <Card shadow="lg" as="form" onSubmit={handleSubmit(submit)}>
+    <Card shadow="lg" as="form" onSubmit={handleSubmit(submit)} size='lg'>
       <CardBody>
         <Flex align="center" justify="space-between">
           <Button type="submit" mt={4}>
@@ -98,9 +98,9 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
                       const err = errors[param.key];
                       return (
                         <FormControl key={param.key} isInvalid={!!err} isRequired={param.required}>
-                          <InputGroup size="sm">
+                          <InputGroup size="lg">
                             <InputLeftAddon>{param.key}</InputLeftAddon>
-                            <Input
+                            <Input size='lg'
                               {...register(param.key, {
                                 required: param.required ? `${param.key} required` : false,
                               })}
