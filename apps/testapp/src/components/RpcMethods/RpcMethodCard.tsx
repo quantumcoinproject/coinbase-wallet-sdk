@@ -14,6 +14,7 @@ import {
   Heading,
   InputGroup,
   InputLeftAddon,
+  Textarea,
   VStack,
 } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
