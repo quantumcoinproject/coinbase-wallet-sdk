@@ -8,7 +8,6 @@ const personalSign: RpcRequestInput = {
   method: 'personal_sign',
   params: [
     { key: 'message', required: true },
-    { key: 'address', required: true },
   ],
   format: (data: Record<string, string>) => [
     `0x${Buffer.from(data.message, 'utf8').toString('hex')}`,
