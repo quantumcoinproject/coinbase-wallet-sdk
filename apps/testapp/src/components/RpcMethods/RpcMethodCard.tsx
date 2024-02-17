@@ -117,10 +117,10 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
           </Button>
         </Flex>
         {response && (
-          <Heading as="h4" size="sm" marginY={2} flex="1" textAlign="left">
-            Signature
-          </Heading>
           <VStack mt={4}>
+            <Heading as="h4" size="sm" marginY={2} flex="1" textAlign="left">
+              Signature
+            </Heading>
             <Code as="pre" p={4} wordBreak="break-word" whiteSpace="pre-wrap" w="100%"  colorScheme="green">
               {JSON.stringify(response, null, 2)}
             </Code>
