@@ -21,14 +21,12 @@ import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useCBWSDK } from '../../context/CBWSDKProvider';
-import { verifySignMsg } from './method/signMessageMethods';
 import { ADDR_TO_FILL } from './shortcut/const';
 
 type ResponseType = string;
 
 export function RpcMethodCard({ connected, format, method, params, shortcuts }) {
   const [response, setResponse] = React.useState<Response | null>(null);
-  const [verifyResult, setVerifyResult] = React.useState<string | null>(null);
   const [error, setError] = React.useState<Record<string, unknown> | string | number | null>(null);
   const { provider } = useCBWSDK();
 
@@ -38,23 +36,9 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
     formState: { errors },
   } = useForm();
 
-  const verify = useCallback(async (response: ResponseType, data: Record<string, string>) => {
-    const verifyResult = verifySignMsg({
-      method,
-      from: data.address,
-      sign: response,
-      message: data.message,
-    });
-    if (verifyResult) {
-      setVerifyResult(verifyResult);
-      return;
-    }
-  }, []);
-
   const submit = useCallback(
     async (data: Record<string, string>) => {
       setError(null);
-      setVerifyResult(null);
       setResponse(null);
       if (!provider) return;
       let values = data;
@@ -80,7 +64,6 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
           params: values,
         });
         setResponse(response);
-        verify(response, data);
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -139,6 +122,20 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
           <VStack mt={4}>
             <Code as="pre" p={4} wordBreak="break-word" whiteSpace="pre-wrap" w="100%">
               {JSON.stringify(response, null, 2)}
+            </Code>
+          </VStack>
+        )}
+        {error && (
+          <VStack mt={4}>
+            <Code
+              as="pre"
+              colorScheme="red"
+              p={4}
+              wordBreak="break-word"
+              whiteSpace="pre-wrap"
+              w="100%"
+            >
+              {JSON.stringify(error, null, 2)}
             </Code>
           </VStack>
         )}
