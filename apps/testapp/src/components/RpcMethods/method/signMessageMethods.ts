@@ -1,5 +1,5 @@
 import {
-  recoverPersonalSignature, 
+ recoverPersonalSignature, 
 } from '@metamask/eth-sig-util';
 
 import { RpcRequestInput } from './RpcRequestInput';
@@ -17,7 +17,7 @@ const personalSign: RpcRequestInput = {
 };
 
 export const signMessageMethods = [
-  personalSign,
+ personalSign,
 ];
 
 export const verifySignMsg = ({
