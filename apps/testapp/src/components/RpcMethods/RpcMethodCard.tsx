@@ -88,7 +88,7 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
               <AccordionItem>
                 <AccordionButton>
                   <Heading as="h3" size="sm" marginY={2} flex="1" textAlign="left">
-                    Params
+                    Signing Details
                   </Heading>
                   <AccordionIcon />
                 </AccordionButton>
