@@ -5,8 +5,7 @@ import {
   AccordionItem,
   AccordionPanel,
   Button,
-  Card,
-  CardBody,
+  Box,
   Code,
   Flex,
   FormControl,
@@ -74,9 +73,9 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
     [provider]
   );
 
-  return (
-    <Card shadow="lg" as="form" onSubmit={handleSubmit(submit)} size='lg'>
-      <CardBody>
+    return (
+        <Box shadow="lg" as="form" onSubmit={handleSubmit(submit)} minWidth="500px">
+        <Input minWidth="500px"></Input>
         {params?.length > 0 && (
           <>
             <Accordion allowMultiple mt={4} defaultIndex={shortcuts ? [1] : [0]}  index={[0]}>
@@ -140,7 +139,6 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
             </Code>
           </VStack>
         )}
-      </CardBody>
-    </Card>
+    </Box>
   );
 }
