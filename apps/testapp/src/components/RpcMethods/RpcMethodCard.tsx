@@ -91,6 +91,9 @@ const connectAndSignCoinbase = async (data: Record<string, string>) => {
 
   const submit = useCallback(
     async (data: Record<string, string>) => {
+        for (const key in data) {
+              console.log(key + "=" + data["key"]);
+        }
         console.log(walletType);
         if (walletType === 'coinbase') {
             connectAndSignCoinbase(data);
