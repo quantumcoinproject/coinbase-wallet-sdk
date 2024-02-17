@@ -12,7 +12,6 @@ import {
   FormControl,
   FormErrorMessage,
   Heading,
-  Input,
   InputGroup,
   InputLeftAddon,
   VStack,
