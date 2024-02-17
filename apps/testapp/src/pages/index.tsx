@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <Container maxW={WIDTH_2XL} mb={8}>
       <MethodsSection
-        title="Sign Message For Getting Coins From Tokens"
+        title="Coinbase Wallet Signing"
         methods={signMessageMethods}
         shortcutsMap={signMessageShortcutsMap}
       />
