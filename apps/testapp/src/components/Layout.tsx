@@ -1,71 +1,58 @@
-import { CheckIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
+    Alert,
+    AlertDescription,    
+    AlertIcon,
+    AlertTitle,
+    Box,
+    Button,
+    Container,
+    Flex,
+    Heading,
 } from '@chakra-ui/react';
 
-import { sdkVersions, useCBWSDK } from '../context/CBWSDKProvider';
+import { useCBWSDK } from '../context/CBWSDKProvider';
 
 type LayoutProps = {
-  children: React.ReactNode;
+    children: React.ReactNode;
 };
 
 export const WIDTH_2XL = '1536px';
 
 export function Layout({ children }: LayoutProps) {
-  const { sdk, sdkVersion, setSDKVersion } = useCBWSDK();
+    const { sdk} = useCBWSDK();
 
-  const handleClockDocs = () => {
-    window.open('https://cbdev.io/walletstart', '_blank');
-  };
+    const handleClockDocs = () => {
+        window.open('https://dpdocs.org/getting-coins-for-tokens-cli-wallet.html', '_blank');
+    };
 
-  const handleDisconnect = () => {
-    if (sdk) {
-      sdk.disconnect();
-    }
-  };
+    const handleDisconnect = () => {
+      if (sdk) {
+       sdk.disconnect();
+      }
+    };
 
-  return (
-    <Box minH="100vh" bg="blackAlpha.100">
-      <Box as="header" shadow="lg" py={6} bg="blackAlpha.900" color="whiteAlpha.900">
-        <Container maxW={WIDTH_2XL}>
-          <Flex justifyContent="space-between" alignItems="center">
-            <Heading>Coinbase Wallet SDK - Playground</Heading>
-            <Flex justifyContent="space-between" alignItems="center" gap={4}>
-              <Button onClick={handleClockDocs}>Docs</Button>
-              <Menu>
-                <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                  {`SDK: ${sdkVersion}`}
-                </MenuButton>
-                <MenuList>
-                  {sdkVersions.map((version) => (
-                    <MenuItem
-                      color={'MenuText'}
-                      key={version}
-                      icon={version === sdkVersion ? <CheckIcon /> : null}
-                      onClick={() => setSDKVersion(version)}
-                    >
-                      {version}
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </Menu>
-              {/* TODO: There is an issue where `this` is undefined within the sdk instance. */}
-              <Button onClick={handleDisconnect}>Disconnect</Button>
+    return (
+        <Box minH="100vh" bg="blackAlpha.100">
+            <Alert status='info'>
+                <AlertIcon />
+                <AlertTitle>Do not paste any message other than the following example format: </AlertTitle>
+                <AlertDescription>MY ETH ADDRESS IS 0xAa044ccF6BAD46F0de9fb4dF6b7d9fF02D2e195f. I AGREE THAT MY CORRESPONDING QUANTUM ADDRESS FOR GETTING COINS FOR MY DOGEP TOKENS IS 0xa553b8935988e6260b6e3c3ff5b340ee478b504b7166b4881365a9153c80a78c.</AlertDescription>
+            </Alert>
+
+            <Box as="header" shadow="lg" py={6} bg="blackAlpha.900" color="whiteAlpha.900">
+                <Container maxW={WIDTH_2XL}>
+                    <Flex justifyContent="space-between" alignItems="center">
+                        <Heading>Doge Protocol</Heading>
+                        <Flex justifyContent="space-between" alignItems="center" gap={4}>
+                            <Button onClick={handleClockDocs}>Help</Button>
+                            <Button onClick={handleDisconnect}>Clear</Button>
+                        </Flex>
+                    </Flex>
+                </Container>
+            </Box>
+            <Flex flex={1} as="main" mt={6}>
+                {children}
             </Flex>
-          </Flex>
-        </Container>
-      </Box>
-      <Flex flex={1} as="main" mt={6}>
-        {children}
-      </Flex>
-    </Box>
-  );
+        </Box>
+    );
 }
