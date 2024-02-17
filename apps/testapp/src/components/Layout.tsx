@@ -6,8 +6,6 @@ import {
     Heading,
 } from '@chakra-ui/react';
 
-import { useCBWSDK } from '../context/CBWSDKProvider';
-
 type LayoutProps = {
     children: React.ReactNode;
 };
