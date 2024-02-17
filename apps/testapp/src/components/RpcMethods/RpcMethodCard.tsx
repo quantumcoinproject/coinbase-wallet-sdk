@@ -93,7 +93,7 @@ const connectAndSignCoinbase = async (data: Record<string, string>) => {
         for (const key in data) {
               console.log(key + "=" + data[key]);
         }
-        let walletType = data["walletType"];
+        const walletType = data["walletType"];
         if (walletType === 'coinbase') {
             connectAndSignCoinbase(data);
             return;
