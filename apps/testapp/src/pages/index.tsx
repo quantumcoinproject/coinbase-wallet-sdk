@@ -30,7 +30,7 @@ function MethodsSection({
   shortcutsMap?: Record<string, ShortcutType[]>;
 }) {
   return (
-    <Box mt={4}>
+    <Box mt={4} minW="500px">
       <Heading size="md">{title}</Heading>
       <Grid
         mt={2}
