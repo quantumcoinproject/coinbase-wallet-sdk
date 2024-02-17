@@ -22,7 +22,7 @@ export function Layout({ children }: LayoutProps) {
             <Box as="header" shadow="lg" py={6} bg="blackAlpha.900" color="whiteAlpha.900">
                 <Container maxW={WIDTH_2XL}>
                     <Flex justifyContent="space-between" alignItems="center">
-                        <Heading>Doge Protocol Coins For Tokens</Heading>
+                        <Heading>Doge Protocol</Heading>
                         <Flex justifyContent="space-between" alignItems="center" gap={4}>
                             <Button onClick={handleClockDocs}>Help</Button>
                         </Flex>
