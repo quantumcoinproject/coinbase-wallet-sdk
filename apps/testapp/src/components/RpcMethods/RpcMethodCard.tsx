@@ -32,8 +32,7 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
   const [error, setError] = React.useState<Record<string, unknown> | string | number | null>(null);
   const { provider } = useCBWSDK();
   const [sdk, setSDK] = React.useState<MetaMaskSDK>();
-  const [walletType, setWalletType] = React.useState(null);
-
+  
   const {
     handleSubmit,
     register,
@@ -94,7 +93,7 @@ const connectAndSignCoinbase = async (data: Record<string, string>) => {
         for (const key in data) {
               console.log(key + "=" + data[key]);
         }
-        console.log(walletType);
+        let walletType = data["walletType"];
         if (walletType === 'coinbase') {
             connectAndSignCoinbase(data);
             return;
