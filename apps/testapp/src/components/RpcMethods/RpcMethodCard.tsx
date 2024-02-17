@@ -153,17 +153,19 @@ const connectAndSignCoinbase = async (data: Record<string, string>) => {
                   <AccordionIcon />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <VStack spacing={2} mt={2}>
+                    <VStack spacing={2} mt={2}>
+                        <FormControl key="walletType" isRequired={true}>
+                            <RadioGroup name="walletType">
+                                <Stack direction='row'>
+                                    <Radio value='coinbase'>Coinbase Wallet</Radio>
+                                    <Radio value='metamask'>MetaMask</Radio>
+                                </Stack>
+                            </RadioGroup>
+                        </FormControl>
                     {params.map((param) => {
                       const err = errors[param.key];
                       return (
                           <FormControl key={param.key} isInvalid={!!err} isRequired={param.required}>
-                              <RadioGroup name="walletType">
-                                  <Stack direction='row'>
-                                      <Radio value='coinbase'>Coinbase Wallet</Radio>
-                                      <Radio value='metamask'>MetaMask</Radio>
-                                  </Stack>
-                              </RadioGroup>
                           <InputGroup size="lg">
                             <InputLeftAddon>{param.key}</InputLeftAddon>
                             <Input size='lg'
