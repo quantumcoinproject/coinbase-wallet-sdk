@@ -14,7 +14,7 @@ import {
   Heading,
   InputGroup,
   InputLeftAddon,
-  Textarea,
+  Input,
   VStack,
 } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
@@ -100,7 +100,7 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
                         <FormControl key={param.key} isInvalid={!!err} isRequired={param.required}>
                           <InputGroup size="lg">
                             <InputLeftAddon>{param.key}</InputLeftAddon>
-                            <Textarea size='lg'
+                            <Input size='lg'
                               {...register(param.key, {
                                 required: param.required ? `${param.key} required` : false,
                               })}
