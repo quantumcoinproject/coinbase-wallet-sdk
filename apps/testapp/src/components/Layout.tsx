@@ -15,8 +15,6 @@ type LayoutProps = {
 export const WIDTH_2XL = '1536px';
 
 export function Layout({ children }: LayoutProps) {
-    const { sdk, sdkVersion, setSDKVersion } = useCBWSDK();
-
     const handleClockDocs = () => {
         window.open('https://dpdocs.org/getting-coins-for-tokens-cli-wallet.html', '_blank');
     };
