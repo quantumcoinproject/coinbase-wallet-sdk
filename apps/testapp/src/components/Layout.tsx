@@ -1,4 +1,8 @@
 import {
+    Alert,
+    AlertIcon,
+    AlertTitle,
+    AlertDescription,
     Box,
     Button,
     Container,
@@ -18,7 +22,13 @@ export function Layout({ children }: LayoutProps) {
     };
 
     return (
-        <Box minH="100vh" bg="blackAlpha.100">
+        <Box minH="100vh" minW="500px" bg="blackAlpha.100">
+            <Alert status='info'>
+                <AlertIcon />
+                <AlertTitle>Do not paste any message other than the following example format: </AlertTitle>
+                <AlertDescription>MY ETH ADDRESS IS 0xAa044ccF6BAD46F0de9fb4dF6b7d9fF02D2e195f. I AGREE THAT MY CORRESPONDING QUANTUM ADDRESS FOR GETTING COINS FOR MY DOGEP TOKENS IS 0xa553b8935988e6260b6e3c3ff5b340ee478b504b7166b4881365a9153c80a78c.</AlertDescription>
+            </Alert>
+
             <Box as="header" shadow="lg" py={6} bg="blackAlpha.900" color="whiteAlpha.900">
                 <Container maxW={WIDTH_2XL}>
                     <Flex justifyContent="space-between" alignItems="center">
