@@ -91,6 +91,7 @@ const connectAndSignCoinbase = async (data: Record<string, string>) => {
 
   const submit = useCallback(
     async (data: Record<string, string>) => {
+        console.log(walletType);
         if (walletType === 'coinbase') {
             connectAndSignCoinbase(data);
             return;
@@ -156,7 +157,7 @@ const connectAndSignCoinbase = async (data: Record<string, string>) => {
                 <AccordionPanel pb={4}>
                     <VStack spacing={2} mt={2}>
                         <FormControl key="walletType" isRequired={true}>
-                            <RadioGroup name="walletType" onChange={setWalletType}>
+                            <RadioGroup name="walletType" onChange={value => setWalletType(value)}>
                                 <Stack direction='row'>
                                     <Radio value='coinbase'>Coinbase Wallet</Radio>
                                     <Radio value='metamask'>MetaMask</Radio>
