@@ -12,9 +12,9 @@ import {
   FormControl,
   FormErrorMessage,
   Heading,
+  Input,
   InputGroup,
   InputLeftAddon,
-  Input,
   VStack,
 } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
