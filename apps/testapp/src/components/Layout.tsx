@@ -6,7 +6,7 @@ import {
     Heading,
 } from '@chakra-ui/react';
 
-import { sdkVersions, useCBWSDK } from '../context/CBWSDKProvider';
+import { useCBWSDK } from '../context/CBWSDKProvider';
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -19,12 +19,6 @@ export function Layout({ children }: LayoutProps) {
 
     const handleClockDocs = () => {
         window.open('https://dpdocs.org/getting-coins-for-tokens-cli-wallet.html', '_blank');
-    };
-
-    const handleDisconnect = () => {
-        if (sdk) {
-            sdk.disconnect();
-        }
     };
 
     return (
