@@ -74,41 +74,28 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
     [provider]
   );
 
-  return (
-    <Card shadow="lg" as="form" onSubmit={handleSubmit(submit)} size='lg'>
+    return (
+    <Card shadow="lg" as="form" onSubmit={handleSubmit(submit)} size='lg' minWidth="1200px;">
       <CardBody>
         {params?.length > 0 && (
           <>
-            <Accordion allowMultiple mt={4} defaultIndex={shortcuts ? [1] : [0]}  index={[0]}>
-              <AccordionItem>
-                <AccordionButton>
-                  <Heading as="h3" size="sm" marginY={2} flex="1" textAlign="left">
-                    Signing Details
-                  </Heading>
-                  <AccordionIcon />
-                </AccordionButton>
-                <AccordionPanel pb={4}>
-                  <VStack spacing={2} mt={2}>
-                    {params.map((param) => {
-                      const err = errors[param.key];
-                      return (
+            <VStack spacing={2} mt={2}>
+                {params.map((param) => {
+                    const err = errors[param.key];
+                    return (
                         <FormControl key={param.key} isInvalid={!!err} isRequired={param.required}>
-                          <InputGroup size="lg">
-                            <InputLeftAddon>{param.key}</InputLeftAddon>
-                            <Input size='lg'
-                              {...register(param.key, {
-                                required: param.required ? `${param.key} required` : false,
-                              })}
-                            />
-                          </InputGroup>
-                          <FormErrorMessage>{err?.message as string}</FormErrorMessage>
+                            <InputGroup size="lg">
+                                <Input size='lg' placeholder={param.key}
+                                    {...register(param.key, {
+                                        required: param.required ? `${param.key} required` : false,
+                                    })}
+                                />
+                            </InputGroup>
+                            <FormErrorMessage>{err?.message as string}</FormErrorMessage>
                         </FormControl>
-                      );
-                    })}
-                  </VStack>
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
+                    );
+                })}
+            </VStack>
           </>
         )}
          <Flex align="center" justify="space-between">
