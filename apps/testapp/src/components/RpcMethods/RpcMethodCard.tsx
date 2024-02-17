@@ -23,8 +23,6 @@ import { useForm } from 'react-hook-form';
 import { useCBWSDK } from '../../context/CBWSDKProvider';
 import { ADDR_TO_FILL } from './shortcut/const';
 
-type ResponseType = string;
-
 export function RpcMethodCard({ connected, format, method, params, shortcuts }) {
   const [response, setResponse] = React.useState<Response | null>(null);
   const [error, setError] = React.useState<Record<string, unknown> | string | number | null>(null);
