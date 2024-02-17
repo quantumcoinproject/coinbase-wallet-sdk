@@ -25,16 +25,16 @@ module.exports = {
   rules: {
     "@typescript-eslint/no-unused-vars": "off",
     "simple-import-sort/imports": [
-      "warn",
+      "error",
       {
         groups: [["^\\u0000"], ["^@?\\w"], ["^src(/.*|$)"]],
       },
     ],
-    "simple-import-sort/exports": "warn",
+    "simple-import-sort/exports": "error",
     "no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
-      "warn",
+      "error",
       {
         vars: "all",
         varsIgnorePattern: "^_",
@@ -43,7 +43,7 @@ module.exports = {
       },
     ],
     "no-console": [
-      "warn",
+      "error",
       {
         allow: ["warn", "error", "info"],
       },
