@@ -15,7 +15,9 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
-  Select,
+  Radio,
+  RadioGroup,
+  Stack,
   VStack,
 } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
@@ -37,10 +39,10 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
     formState: { errors },
   } = useForm();
 
-const connectAndSignMetaMask = async () => {
+const connectAndSignMetaMask = async (message: string) => {
     try {
         const signResult = await sdk?.connectAndSign({
-            msg: 'Connect + Sign message'
+            msg: message
         });
         setResponse(signResult);
     } catch (err) {
@@ -50,6 +52,17 @@ const connectAndSignMetaMask = async () => {
 
   const submit = useCallback(
     async (data: Record<string, string>) => {
+        if (data["walletType"] === 'coinbase') {
+            
+        } else if (data["walletType"] === 'metamask') {
+            connectAndSignMetaMask(data["message"]);
+            return;
+        } else {
+            setError('Select a wallet type');
+            return;
+        }
+
+
       setError(null);
       setResponse(null);
       if (!provider) return;
@@ -107,10 +120,12 @@ const connectAndSignMetaMask = async () => {
                       const err = errors[param.key];
                       return (
                           <FormControl key={param.key} isInvalid={!!err} isRequired={param.required}>
-                            <Select placeholder='Select Wallet Type'>
-                                <option value='metamask'>MetaMask</option>
-                                <option value='coinbase'>Coinbase Wallet</option>
-                            </Select>
+                              <RadioGroup name="walletType">
+                                  <Stack direction='row'>
+                                      <Radio value='coinbase'>Coinbase Wallet</Radio>
+                                      <Radio value='metamask'>MetaMask</Radio>
+                                  </Stack>
+                              </RadioGroup>
                           <InputGroup size="lg">
                             <InputLeftAddon>{param.key}</InputLeftAddon>
                             <Input size='lg'
