@@ -15,6 +15,7 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
+  Select,
   VStack,
 } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
@@ -22,17 +23,30 @@ import { useForm } from 'react-hook-form';
 
 import { useCBWSDK } from '../../context/CBWSDKProvider';
 import { ADDR_TO_FILL } from './shortcut/const';
+import { MetaMaskSDK, SDKProvider } from '@metamask/sdk';
 
 export function RpcMethodCard({ connected, format, method, params, shortcuts }) {
-  const [response, setResponse] = React.useState<Response | null>(null);
+  const [response, setResponse] = React.useState<any | null>(null);
   const [error, setError] = React.useState<Record<string, unknown> | string | number | null>(null);
   const { provider } = useCBWSDK();
+  const [sdk, setSDK] = React.useState<MetaMaskSDK>();
 
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
+
+const connectAndSignMetaMask = async () => {
+    try {
+        const signResult = await sdk?.connectAndSign({
+            msg: 'Connect + Sign message'
+        });
+        setResponse(signResult);
+    } catch (err) {
+        setResponse(response);
+    }
+};
 
   const submit = useCallback(
     async (data: Record<string, string>) => {
@@ -92,7 +106,11 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
                     {params.map((param) => {
                       const err = errors[param.key];
                       return (
-                        <FormControl key={param.key} isInvalid={!!err} isRequired={param.required}>
+                          <FormControl key={param.key} isInvalid={!!err} isRequired={param.required}>
+                            <Select placeholder='Select Wallet Type'>
+                                <option value='metamask'>MetaMask</option>
+                                <option value='coinbase'>Coinbase Wallet</option>
+                            </Select>
                           <InputGroup size="lg">
                             <InputLeftAddon>{param.key}</InputLeftAddon>
                             <Input size='lg'
