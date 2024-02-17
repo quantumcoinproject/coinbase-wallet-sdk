@@ -10,6 +10,8 @@ import {
     Heading,
 } from '@chakra-ui/react';
 
+import { useCBWSDK } from '../context/CBWSDKProvider';
+
 type LayoutProps = {
     children: React.ReactNode;
 };
@@ -17,12 +19,20 @@ type LayoutProps = {
 export const WIDTH_2XL = '1536px';
 
 export function Layout({ children }: LayoutProps) {
+    const { sdk} = useCBWSDK();
+
     const handleClockDocs = () => {
         window.open('https://dpdocs.org/getting-coins-for-tokens-cli-wallet.html', '_blank');
     };
 
+    const handleDisconnect = () => {
+      if (sdk) {
+       sdk.disconnect();
+      }
+    };
+
     return (
-        <Box minH="100vh" minW="500px" bg="blackAlpha.100">
+        <Box minH="100vh" bg="blackAlpha.100">
             <Alert status='info'>
                 <AlertIcon />
                 <AlertTitle>Do not paste any message other than the following example format: </AlertTitle>
@@ -35,6 +45,7 @@ export function Layout({ children }: LayoutProps) {
                         <Heading>Doge Protocol</Heading>
                         <Flex justifyContent="space-between" alignItems="center" gap={4}>
                             <Button onClick={handleClockDocs}>Help</Button>
+                            <Button onClick={handleDisconnect}>Clear</Button>
                         </Flex>
                     </Flex>
                 </Container>
