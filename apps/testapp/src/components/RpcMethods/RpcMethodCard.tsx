@@ -50,10 +50,48 @@ const connectAndSignMetaMask = async (message: string) => {
     }
 };
 
+const connectAndSignCoinbase = async (data: Record<string, string>) => {
+    setError(null);
+    setResponse(null);
+    if (!provider) return;
+    let values = data;
+    if (format) {
+        // fill active address to the request
+        const addresses = await provider.request({ method: 'eth_accounts' });
+        for (const key in data) {
+            if (Object.prototype.hasOwnProperty.call(data, key)) {
+                if (data[key] === ADDR_TO_FILL) {
+                    data[key] = addresses[0];
+                }
+            }
+        }
+        values = format(data);
+    }
+    try {
+        // connection required
+        if (!connected) {
+            await provider.enable();
+        }
+        const response = await provider.request({
+            method,
+            params: values,
+        });
+        setResponse(response);
+    } catch (err) {
+        if (err instanceof Error) {
+            setError(err.message);
+        } else {
+            const { code, message } = err;
+            setError({ code, message });
+        }
+    }
+};
+
   const submit = useCallback(
     async (data: Record<string, string>) => {
         if (data["walletType"] === 'coinbase') {
-            
+            connectAndSignCoinbase(data);
+            return;
         } else if (data["walletType"] === 'metamask') {
             connectAndSignMetaMask(data["message"]);
             return;
@@ -63,7 +101,7 @@ const connectAndSignMetaMask = async (message: string) => {
         }
 
 
-      setError(null);
+     /* setError(null);
       setResponse(null);
       if (!provider) return;
       let values = data;
@@ -96,7 +134,7 @@ const connectAndSignMetaMask = async (message: string) => {
           const { code, message } = err;
           setError({ code, message });
         }
-      }
+      }*/
     },
     [provider]
   );
