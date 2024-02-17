@@ -97,9 +97,6 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
     <Card shadow="lg" as="form" onSubmit={handleSubmit(submit)}>
       <CardBody>
         <Flex align="center" justify="space-between">
-          <Heading as="h2" size="lg">
-            <Code>{method}</Code>
-          </Heading>
           <Button type="submit" mt={4}>
             Submit
           </Button>
@@ -142,34 +139,6 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
           <VStack mt={4}>
             <Code as="pre" p={4} wordBreak="break-word" whiteSpace="pre-wrap" w="100%">
               {JSON.stringify(response, null, 2)}
-            </Code>
-          </VStack>
-        )}
-        {verifyResult && (
-          <VStack mt={4}>
-            <Code
-              as="pre"
-              p={4}
-              colorScheme={verifyResult.includes('Failed') ? 'red' : 'cyan'}
-              wordBreak="break-word"
-              whiteSpace="pre-wrap"
-              w="100%"
-            >
-              {JSON.stringify(verifyResult, null, 2)}
-            </Code>
-          </VStack>
-        )}
-        {error && (
-          <VStack mt={4}>
-            <Code
-              as="pre"
-              colorScheme="red"
-              p={4}
-              wordBreak="break-word"
-              whiteSpace="pre-wrap"
-              w="100%"
-            >
-              {JSON.stringify(error, null, 2)}
             </Code>
           </VStack>
         )}
