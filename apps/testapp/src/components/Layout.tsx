@@ -50,7 +50,7 @@ export function Layout({ children }: LayoutProps) {
                     </Flex>
                 </Container>
             </Box>
-            <Flex flex={1} as="main" mt={6} minWidth="500px">
+            <Flex flex={1} as="main" mt={6}>
                 {children}
             </Flex>
         </Box>
