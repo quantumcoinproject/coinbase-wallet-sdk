@@ -12,7 +12,6 @@ import {
   FormControl,
   FormErrorMessage,
   Heading,
-  HStack,
   Input,
   InputGroup,
   InputLeftAddon,
@@ -136,25 +135,6 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
                   </VStack>
                 </AccordionPanel>
               </AccordionItem>
-              {shortcuts?.length > 0 && (
-                <AccordionItem>
-                  <AccordionButton>
-                    <Heading as="h3" size="sm" marginY={2} flex="1" textAlign="left">
-                      Shortcuts
-                    </Heading>
-                    <AccordionIcon />
-                  </AccordionButton>
-                  <AccordionPanel pb={4}>
-                    <HStack spacing={2}>
-                      {shortcuts.map((shortcut) => (
-                        <Button key={shortcut.key} onClick={() => submit(shortcut.data)}>
-                          {shortcut.key}
-                        </Button>
-                      ))}
-                    </HStack>
-                  </AccordionPanel>
-                </AccordionItem>
-              )}
             </Accordion>
           </>
         )}
