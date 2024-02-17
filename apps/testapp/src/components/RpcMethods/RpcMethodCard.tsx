@@ -77,11 +77,6 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
   return (
     <Card shadow="lg" as="form" onSubmit={handleSubmit(submit)} size='lg'>
       <CardBody>
-        <Flex align="center" justify="space-between">
-          <Button type="submit" mt={4}>
-            Submit
-          </Button>
-        </Flex>
         {params?.length > 0 && (
           <>
             <Accordion allowMultiple mt={4} defaultIndex={shortcuts ? [1] : [0]}  index={[0]}>
@@ -116,7 +111,15 @@ export function RpcMethodCard({ connected, format, method, params, shortcuts }) 
             </Accordion>
           </>
         )}
+         <Flex align="center" justify="space-between">
+          <Button type="submit" mt={4}>
+            Submit
+          </Button>
+        </Flex>
         {response && (
+          <Heading as="h4" size="sm" marginY={2} flex="1" textAlign="left">
+            Signature
+          </Heading>
           <VStack mt={4}>
             <Code as="pre" p={4} wordBreak="break-word" whiteSpace="pre-wrap" w="100%"  colorScheme="green">
               {JSON.stringify(response, null, 2)}
