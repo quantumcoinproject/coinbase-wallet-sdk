@@ -1,26 +1,8 @@
 import {
-  MessageTypes,
-  recoverPersonalSignature,
-  recoverTypedSignature,
-  SignTypedDataVersion,
-  TypedDataV1,
-  TypedMessage,
+  recoverPersonalSignature, 
 } from '@metamask/eth-sig-util';
 
-import { parseMessage } from '../shortcut/ShortcutType';
 import { RpcRequestInput } from './RpcRequestInput';
-
-const ethSign: RpcRequestInput = {
-  method: 'eth_sign',
-  params: [
-    { key: 'message', required: true },
-    { key: 'address', required: true },
-  ],
-  format: (data: Record<string, string>) => [
-    data.address,
-    `0x${Buffer.from(data.message, 'utf8').toString('hex')}`,
-  ],
-};
 
 const personalSign: RpcRequestInput = {
   method: 'personal_sign',
@@ -55,42 +37,6 @@ export const verifySignMsg = ({
       const recoveredAddr = recoverPersonalSignature({
         data: msg,
         signature: sign,
-      });
-      if (recoveredAddr === from) {
-        return `SigUtil Successfully verified signer as ${recoveredAddr}`;
-      } else {
-        return `SigUtil Failed to verify signer when comparing ${recoveredAddr} to ${from}`;
-      }
-    }
-    case 'eth_signTypedData_v1': {
-      const recoveredAddr = recoverTypedSignature({
-        data: message as TypedDataV1,
-        signature: sign,
-        version: SignTypedDataVersion.V1,
-      });
-      if (recoveredAddr === from) {
-        return `SigUtil Successfully verified signer as ${recoveredAddr}`;
-      } else {
-        return `SigUtil Failed to verify signer when comparing ${recoveredAddr} to ${from}`;
-      }
-    }
-    case 'eth_signTypedData_v3': {
-      const recoveredAddr = recoverTypedSignature({
-        data: message as TypedMessage<MessageTypes>,
-        signature: sign,
-        version: SignTypedDataVersion.V3,
-      });
-      if (recoveredAddr === from) {
-        return `SigUtil Successfully verified signer as ${recoveredAddr}`;
-      } else {
-        return `SigUtil Failed to verify signer when comparing ${recoveredAddr} to ${from}`;
-      }
-    }
-    case 'eth_signTypedData_v4': {
-      const recoveredAddr = recoverTypedSignature({
-        data: message as TypedMessage<MessageTypes>,
-        signature: sign,
-        version: SignTypedDataVersion.V4,
       });
       if (recoveredAddr === from) {
         return `SigUtil Successfully verified signer as ${recoveredAddr}`;
