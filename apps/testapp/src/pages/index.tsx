@@ -1,7 +1,6 @@
 import { Box, Container, Grid, GridItem, Heading } from '@chakra-ui/react';
 import React from 'react';
 
-import { EventListenersCard } from '../components/EventListeners/EventListenersCard';
 import { WIDTH_2XL } from '../components/Layout';
 import { RpcRequestInput } from '../components/RpcMethods/method/RpcRequestInput';
 import { signMessageMethods } from '../components/RpcMethods/method/signMessageMethods';
@@ -12,12 +11,6 @@ import { signMessageShortcutsMap } from '../components/RpcMethods/shortcut/signM
 export default function Home() {
   return (
     <Container maxW={WIDTH_2XL} mb={8}>
-      <Box>
-        <Heading size="md">Event Listeners</Heading>
-        <Grid mt={2} templateColumns={{ base: '100%' }} gap={2}>
-          <EventListenersCard />
-        </Grid>
-      </Box>
       <MethodsSection
         title="Sign Message For Getting Coins From Tokens"
         methods={signMessageMethods}
